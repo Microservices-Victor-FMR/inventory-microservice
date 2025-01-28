@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const context = await NestFactory.createApplicationContext(AppModule);
@@ -15,10 +16,19 @@ async function bootstrap() {
     {
       transport: Transport.NATS,
       options: {
-        servers:[NATS_URL]
+        servers: [NATS_URL],
       },
     },
   );
-  await app.listen()
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidUnknownValues: true,
+      
+    }),
+  );
+  await app.listen();
 }
 bootstrap();
