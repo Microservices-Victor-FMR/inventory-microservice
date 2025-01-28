@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^11.0.6",
     "@prisma/client": "^6.2.1",
     "dotenv-cli": "^8.0.0",
+    "nats": "^2.29.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
