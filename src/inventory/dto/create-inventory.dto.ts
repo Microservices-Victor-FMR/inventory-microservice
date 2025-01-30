@@ -1,14 +1,14 @@
-import { Type } from "class-transformer";
-import { IsInt, IsNotEmpty, IsUUID } from "class-validator";
+import { Type } from 'class-transformer';
+import { IsInt, IsNotEmpty, IsUUID } from 'class-validator';
 
 export class CreateInventoryDto {
+    
+  @IsNotEmpty()
+  @IsUUID()
+  product_id: string;
 
-    @IsNotEmpty()
-    @IsUUID()
-    product_id : string
-
-
-    @Type(() => Number)
-    @IsInt()
-    quantity_available: number 
+  @IsNotEmpty()
+  @Type(() => Number)
+  @IsInt()
+  quantity_available: number;
 }
